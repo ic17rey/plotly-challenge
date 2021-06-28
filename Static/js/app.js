@@ -54,27 +54,35 @@ function renderData() {
         // need to slice to only display top 10, need to reverse the order so bar chart reads top down
         // need the OTU ids to be the labels along the left
         d3.select('#bar').html('');
+        //details = []
         //var results = Object.entries(sample).forEach(([key, val]) => {
           //  d3.select('#bar').sample.sort((a, b) => b.sample.sample_values - a.sample.sample_values);
         
         
           //Object.entries(sample).forEach(([keyB, valB]) => {
-          //  console.log(sample);
+          //  details.append.text(keyB + ':' + valB)
+          // console.log(sample);
         
         //var sortedSample = sample.sort((a, b) => b.sample.sample_values - a.sample.sample_values);
+        //var sortedData = sample.sample_values.sort((a, b) => b.sample.sample_values - a.sample.sample_values);
+        var slicedData = sample.otu_ids.slice(0, 10);
+        var slicedData2 = sample.sample_values.slice(0, 10);
         var trace = {
             x: sample.sample_values,
-            y: sample.otu_ids,
+            //x: slicedData2,
+            //y: sample.otu_ids,
+            y: slicedData,
             type: "bar",
             orientation: "h"
         };
         
+        console.log(slicedData);
         var data = [trace];
         
         
          var layout = {
            title: "Top Ten OTUs for Selected Test Subject ID",
-           xaxis: { title: "Value" },
+           xaxis: { title: "Sample Value" },
            yaxis: { title: "OTU ID" }
         };
           
