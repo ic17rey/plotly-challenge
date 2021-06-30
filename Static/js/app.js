@@ -114,6 +114,15 @@ function renderData() {
             type: "indicator", 
             mode: "gauge+number",
             gauge: {axis: { range: [null, 9] },
+            steps: [
+                { range: [0, 3], color: "lightcyan" },
+                { range: [3, 6], color: "lightgray" },
+                { range: [6, 9], color: "gray"}],
+            threshold: {
+                line: { color: "red", width: 2 },
+                thickness: 0.75,
+                value: 8.9
+                },
             bar: { color: "green"}
         }
         };
