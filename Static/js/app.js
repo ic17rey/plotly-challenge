@@ -26,7 +26,6 @@ d3.json('static/data/samples.json').then(({names}) => {
 
 // Define the function that will display demographics and impact other charts
 function renderData() {
-    
     // var seeMe = d3.select('select').node()
     // console.log(seeMe)
     
@@ -35,8 +34,10 @@ function renderData() {
     console.log(`ID Number Selection: ${sel}`);
     // console.log(typeof sel);
 
-    // Use D3 to connect to and read JSON file demographics and samples
+    // Use D3 to read JSON file demographics and samples
     d3.json('static/data/samples.json').then(({metadata, samples}) => {
+        
+        // Filter for the selection made in the dropdown (sel)
         demo = metadata.filter(obj => obj.id == sel)[0];
         sample = samples.filter(obj => obj.id == sel)[0];
         console.log(demo, sample);
@@ -44,35 +45,31 @@ function renderData() {
         // Append the keys and values for demographic info in the display panel
         d3.select('.panel-body').html('');
         Object.entries(demo).forEach(([key, val]) => {
-            d3.select('.panel-body').append('h5').text(`${key.toUpperCase()}: ${val}`);
+            d3.select('.panel-body').append('h5').text(`${key.toUpperCase()}: ${val}`)
+        });
         
         // Identify the top 10 OTUs for the selected individual; plot horizontal bar
-
-        // need the OTU ids to be the labels along the left with bars evenly spaced
         d3.select('#bar').html('');
-        // Object.entries(sample).forEach(([key, val]) => {   
-        var slicedData = sample.sample_values.slice(0, 10);
-        var ylabels = sample.otu_ids.slice(0, 10);
-        console.log(`ylabels: ${ylabels}`);
-        console.log(slicedData);
-        //});         
-        // var slicedData2 = sample.otu_ids.slice(0, 10);
+        var xSliced = sample.sample_values.slice(0, 10);
+        console.log(xSliced);
+        
+        // Define/update ylabels to include the text "OTU" plus the OTU ID
+        var ylabels = sample.otu_ids.slice(0, 10).map(d => "OTU: " + d);
+        console.log(ylabels);
+        
         var trace = {
-            //x: sample.sample_values,
-            x: slicedData.reverse(),
-            y: ylabels[0],
-            // y: ylabels,
-            //y: slicedData2,
+            x: xSliced.reverse(),
+            y: ylabels.reverse(),
             type: "bar",
-            orientation: "h",
+            orientation: "h"
         };
         
         var data = [trace];
         
-           var layout = {
-           title: "Top Ten OTUs for Selected Test Subject ID",
-           xaxis: { title: "Sample Value" },
-           yaxis: { title: "OTU ID"}
+        var layout = {
+        title: "Top Ten OTUs for Selected Test Subject ID",
+        xaxis: { title: "Sample Value" }, 
+        //yaxis: { title: "" }
         };
           
         // Plot the chart with id "bar-plot"
@@ -92,15 +89,14 @@ function renderData() {
                 sizeref: .04,
                 sizemode: 'area'
             },
-            //Include the OTU label when hovering over a bubble
+            // Include the OTU label when hovering over a bubble
             text: sample.otu_labels        
-            
         };
         
         var data2 = [trace2];
         
         var layout2 = {
-            title: "Samples for Selected Test Subject ID",
+            title: "Bacteria for Selected Test Subject",
             xaxis: { title: "Microbial Species (OTU ID)"},
             yaxis: { title: "Sample Value"},
             text: sample.otu_labels,
@@ -110,7 +106,11 @@ function renderData() {
         
         Plotly.newPlot("bubble", data2, layout2)
         });
-    })
+
+        d3.select('#gauge').html('');
+        //var data3 = 
+        Plotly.newPlot("gauge", data3, layout3)
+
 };
 
 // Run the function to update the visualizations when a selection is made in the dropdown
