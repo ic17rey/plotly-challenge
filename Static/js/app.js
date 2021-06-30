@@ -4,7 +4,7 @@
 
 // Use D3 to connect to and read the JSON file data
 // Result is 3 arrays (names, metadata and samples)
-d3.json('static/data/samples.json').then((importedData) => {
+d3.json('./static/data/samples.json').then((importedData) => {
     console.log(importedData);
 });     
 
@@ -15,7 +15,7 @@ d3.json('static/data/samples.json').then((importedData) => {
 
 // Use D3 to read the JSON file ID Numbers (stored as "names")
 // and append the ID numbers to options for the dropdown
-d3.json('static/data/samples.json').then(({names}) => {
+d3.json('./static/data/samples.json').then(({names}) => {
     names.forEach(name => {
         d3.select('select').append('option').text(name);
     });
@@ -35,7 +35,7 @@ function renderData() {
     // console.log(typeof sel);
 
     // Use D3 to read JSON file demographics and samples
-    d3.json('static/data/samples.json').then(({metadata, samples}) => {
+    d3.json('./static/data/samples.json').then(({metadata, samples}) => {
         
         // Filter for the selection made in the dropdown (sel)
         demo = metadata.filter(obj => obj.id == sel)[0];
