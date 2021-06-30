@@ -105,12 +105,29 @@ function renderData() {
         };
         
         Plotly.newPlot("bubble", data2, layout2)
-        });
+        
 
         d3.select('#gauge').html('');
-        //var data3 = 
+        var trace3 = {
+            domain: { x: [0, 1], y: [0, 1]},
+            value: demo.wfreq,
+            type: "indicator", 
+            mode: "gauge+number",
+            gauge: {axis: { range: [null, 9] },
+            bar: { color: "green"}
+        }
+        };
+        
+        var data3 = [trace3];
+        
+        layout3 = {
+            title: "<em>Frequency of Washing </em><br> Scrubs per Week",
+            width: 400,
+            height: 350,
+            paper_bgcolor: "lavender" 
+        }; 
         Plotly.newPlot("gauge", data3, layout3)
-
+});
 };
 
 // Run the function to update the visualizations when a selection is made in the dropdown
