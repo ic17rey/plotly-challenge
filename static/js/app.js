@@ -68,7 +68,7 @@ function renderData() {
         
         var layout = {
         title: "Top Ten OTUs for Selected Test Subject ID",
-        xaxis: { title: "Sample Value" }, 
+        xaxis: { title: "Sample Value" } 
         //yaxis: { title: "" }
         };
           
@@ -130,9 +130,9 @@ function renderData() {
         var data3 = [trace3];
         
         layout3 = {
-            title: "<em>Frequency of Washing </em><br> Scrubs per Week",
-            width: 400,
-            height: 350,
+            title: "<br><em>Frequency of Washing </em><br>Scrubs per Week",
+            width: 360,
+            height: 400,
             paper_bgcolor: "lavender" 
         }; 
         Plotly.newPlot("gauge", data3, layout3)
