@@ -132,7 +132,7 @@ function renderData() {
         var data3 = [trace3];
         
         layout3 = {
-            title: "<br><em>Frequency of Washing </em><br>Scrubs per Week",
+            title: "<br><b>Frequency of Washing </b><br>Scrubs per Week",
             width: 360,
             height: 400,
             paper_bgcolor: "#EEF6FD" 
