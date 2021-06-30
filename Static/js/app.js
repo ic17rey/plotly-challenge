@@ -106,7 +106,7 @@ function renderData() {
         
         Plotly.newPlot("bubble", data2, layout2)
         
-
+        // Include a gauge that displays the value for washing frequency (demo.wfreq)
         d3.select('#gauge').html('');
         var trace3 = {
             domain: { x: [0, 1], y: [0, 1]},
