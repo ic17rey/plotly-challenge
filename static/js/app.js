@@ -68,7 +68,7 @@ function renderData() {
         var data = [trace];
         
         var layout = {
-        title: "Top Ten OTUs for Selected Test Subject ID",
+        title: "<b>Top Ten OTUs for Selected Test Subject ID<b>",
         xaxis: { title: "Sample Value" },
         //yaxis: { title: "" }
         hovermode: "closest"
@@ -98,7 +98,7 @@ function renderData() {
         var data2 = [trace2];
         
         var layout2 = {
-            title: "Bacteria for Selected Test Subject",
+            title: "<b>Bacteria for Selected Test Subject ID<b>",
             xaxis: { title: "Microbial Species (OTU ID)"},
             yaxis: { title: "Sample Value"},
             text: sample.otu_labels,
